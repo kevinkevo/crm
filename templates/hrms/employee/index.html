@@ -1,0 +1,188 @@
+
+
+        {% extends "base.html" %}
+
+        {% block content %}
+        
+        
+        
+        
+
+        <div class="container">
+          <div class="navigation">
+            <ul>
+              <li>
+                <a href="#" >
+                  <span class="icon"><ion-icon name="logo-apple"></ion-icon></span>
+                  <span class="title">Kevoh Organisation</span>
+        
+                </a>
+              </li>
+              <li>
+                <a href="{% url 'land-page' %}" >
+                  <span class="icon"><ion-icon name="home-outline"></ion-icon></span>
+                  <span class="title">Dashboard</span>
+        
+                </a>
+              </li>
+              
+              <li>
+                <a href="{% url 'leads:lead-list' %}" >
+                  <span class="icon"><ion-icon name="people-outline"></ion-icon></ion-icon></span>
+                  <span class="title">Leads</span>
+        
+                </a>
+              </li>
+              <li>
+                <a href="{% url 'agents:agent-list' %}" >
+                  <span class="icon"><ion-icon name="people-outline"></ion-icon></ion-icon></span>
+                  <span class="title">Agents</span>
+        
+                </a>
+              </li>
+              <li>
+                <a href="{%url 'leaves' %}" >
+                  <span class="icon"><ion-icon name="git-pull-request-outline"></ion-icon></ion-icon></span>
+                  <span class="title">Leaves requests</span>
+        
+                </a>
+              </li>
+              <li>
+                <a href="{% url 'hrms:dashboard' %}" >
+                  <span class="icon"><ion-icon name="person-outline"></ion-icon></ion-icon></span>
+                  <span class="title">Human Resource</span>
+        
+                </a>
+              </li>
+              <li>
+                <a href="{% url 'announcements:announcementall' %}" >
+                  <span class="icon"><ion-icon name="chatbox-ellipses-outline"></ion-icon></ion-icon></span>
+                  <span class="title">Announcements</span>
+        
+                </a>
+              </li>
+              <li>
+                <a href="{% url 'hrms:recruitment' %}" >
+                  <span class="icon"><ion-icon name="bag-add-outline"></ion-icon></ion-icon></ion-icon></span>
+                  <span class="title">Recruitment</span>
+        
+                </a>
+              </li>
+              <li>
+                <a href="{%url 'logout' %}" >
+                  <span class="icon"><ion-icon name="exit-outline"></ion-icon></ion-icon></span>
+                  <span class="title">Log out</span>
+        
+                </a>
+              </li>
+            </ul>
+          </div>
+        
+        </div>
+        
+        <!--main-->
+        <div class="main">
+          <div class="topbar">
+            <div class="toggle">
+              <ion-icon name="menu-outline"></ion-icon>
+            </div>
+            <div class="search">
+              <label>
+                <input type="text" placeholder="search here">
+                <ion-icon name="search-outline"></ion-icon> 
+              </label>
+            </div>
+            <div class="user">
+              <h3>Logged in as:{{request.user.username}}</h3>
+            </div>
+          </div>
+      <section class="text-gray-600 body-font">
+        <div class="container px-2 py-18 mx-auto flex flex-wrap">
+          <div class="w-full mb-6 py-6 flex justify-between items-center border-b border-gray-200">
+            <div>
+              <h1 class="text-4xl text-gray-800">Employees</h1>
+            </div>
+
+            
+            <div>
+              <a  href="{% url 'hrms:employee_new' %}" class="text-gray-500 hover:text-blue-500">
+                Add new+
+              </a>
+            </div>
+          </div>
+          <div class="max-w-h-lg mx-auto w-full mb-6 py-6 flex justify-between items-center">
+            <table class="table-auto w-full text-left whitespace-no-wrap">
+               <thead>
+              <tr>
+                <th class="px-4 py-3 title-font tracking-wider font-medium text-gray-900 text-sm bg-gray-100 rounded-tl rounded-bl">First name</th>
+                <th class="px-4 py-3 title-font tracking-wider font-medium text-gray-900 text-sm bg-gray-100">Last name</th>
+                <th class="px-4 py-3 title-font tracking-wider font-medium text-gray-900 text-sm bg-gray-100">Telephone</th>
+                <th class="px-4 py-3 title-font tracking-wider font-medium text-gray-900 text-sm bg-gray-100">email</th>
+                <th class="px-4 py-3 title-font tracking-wider font-medium text-gray-900 text-sm bg-gray-100">Edit</th>
+          
+                </tr>
+               </thead>
+               <tbody>
+              {% for employee in employees %}
+              <tr>
+                <td class="px-4 py-3">{{employee.first_name}}</td>
+                <td class="px-4 py-3"> {{employee.last_name}} </td>
+                <td class="px-4 py-3 gray-500"> {{employee.mobile}} </td>
+                <td class="px-4 py-3"> {{employee.email}} </td>
+                <td class="px-4 py-3 hover:text-blue-500"><a  href="{% url 'hrms:employee_update' pk=employee.pk %}">  Edit </a></td>
+              </tr>
+              {% endfor %}
+               </tbody>
+             </table>
+             {% if is_paginated %}
+                    <nav aria-label="Page navigation example" class='mt-4'>
+                      <ul class="pagination">
+                      {% if page_obj.has_previous %}
+                        <li class="page-item"><a class="page-link" href="?page={{page_obj.previous_page_number}}">Previous</a></li>
+                      {% else %}
+
+                        <li class="page-item disabled"><span class='page-link '>Previous</span></li>
+                      {% endif %}
+                        <li class="disabled"> <span class='page-link'> Page {{page_obj.number}} of {{page_obj.paginator.num_pages}} </span></li>
+                      {% if page_obj.has_next %}
+                        <li class="page-item"><a class="page-link" href="?page={{page_obj.next_page_number}}">Next</a></li>
+                      {% else %}
+                        <li class="page-item disabled"><span class='page-link '>Next</span></li> 
+                      {% endif %}                        
+                      </ul>
+                  </nav>
+                  {% endif %}
+               </div>
+        </div>
+      </section>
+
+      {% block noty %}
+      <script>
+        {% if messages %}
+          {% for message in messages  %}
+            toastr.success('{{message}}')
+          {% endfor %}
+        {% endif %}
+      </script>
+      {% endblock noty %}
+  </div>
+
+  <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+<script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+
+<script>
+  //menu toggle
+  let toggle = document.querySelector('.toggle');
+  let navigation = document.querySelector('.navigation');
+  let main =document.querySelector('.main');
+
+
+  toggle.onclick = function(){
+      navigation.classList.toggle('active');
+      main.classList.toggle('active');
+      
+  }
+</script>
+{% endblock content %}
+
+                

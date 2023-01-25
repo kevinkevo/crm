@@ -1,0 +1,194 @@
+
+{% extends "base.html" %}
+{% load tailwind_filters %}
+  {% load static %}
+        {% block content %}
+        
+        <div class="container">
+          <div class="navigation">
+            <ul>
+              <li>
+                <a href="#" >
+                  <span class="icon"><ion-icon name="logo-apple"></ion-icon></span>
+                  <span class="title">Kevoh Organisation</span>
+        
+                </a>
+              </li>
+              <li>
+                <a href="{% url 'land-page' %}" >
+                  <span class="icon"><ion-icon name="home-outline"></ion-icon></span>
+                  <span class="title">Dashboard</span>
+        
+                </a>
+              </li>
+              
+              <li>
+                <a href="{% url 'leads:lead-list' %}" >
+                  <span class="icon"><ion-icon name="people-outline"></ion-icon></ion-icon></span>
+                  <span class="title">Leads</span>
+        
+                </a>
+              </li>
+              <li>
+                <a href="{% url 'agents:agent-list' %}" >
+                  <span class="icon"><ion-icon name="people-outline"></ion-icon></ion-icon></span>
+                  <span class="title">Agents</span>
+        
+                </a>
+              </li>
+              <li>
+                <a href="{%url 'leaves' %}" >
+                  <span class="icon"><ion-icon name="git-pull-request-outline"></ion-icon></ion-icon></span>
+                  <span class="title">Leaves requests</span>
+        
+                </a>
+              </li>
+              <li>
+                <a href="{% url 'hrms:dashboard' %}" >
+                  <span class="icon"><ion-icon name="person-outline"></ion-icon></ion-icon></span>
+                  <span class="title">Human Resource</span>
+        
+                </a>
+              </li>
+              <li>
+                <a href="{% url 'announcements:announcementall' %}" >
+                  <span class="icon"><ion-icon name="chatbox-ellipses-outline"></ion-icon></ion-icon></span>
+                  <span class="title">Announcements</span>
+        
+                </a>
+              </li>
+              <li>
+                <a href="{% url 'hrms:recruitment' %}" >
+                  <span class="icon"><ion-icon name="bag-add-outline"></ion-icon></ion-icon></ion-icon></span>
+                  <span class="title">Recruitment</span>
+        
+                </a>
+              </li>
+              <li>
+                <a href="{%url 'logout' %}" >
+                  <span class="icon"><ion-icon name="exit-outline"></ion-icon></ion-icon></span>
+                  <span class="title">Log out</span>
+        
+                </a>
+              </li>
+            </ul>
+          </div>
+        
+        </div>
+        
+        <!--main-->
+        <div class="main">
+          <div class="topbar">
+            <div class="toggle">
+              <ion-icon name="menu-outline"></ion-icon>
+            </div>
+            <div class="search">
+              <label>
+                <input type="text" placeholder="search here">
+                <ion-icon name="search-outline"></ion-icon> 
+              </label>
+            </div>
+            <div class="user">
+              <h3>Logged in as:{{request.user.username}}</h3>
+            </div>
+          </div>
+          <section class="text-gray-600 body-font mt-20">
+            <div class="flex flex-wrap -m-4 text-center">
+              <div class="p-4 sm:w-1/3 w-1/3">
+                <p class="leading-relaxed">Employees</p>
+                <h2 class="title-font font-medium bg:text-4xl text-3xl text-white-500 bg-color-blue-500">{{emp_total}}</h2>
+              </div>
+              
+<button id="dropdownDividerButton" data-dropdown-toggle="dropdownDivider" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-1 text-center inline-flex items-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" type="button">Listed views <svg class="ml-2 w-4 h-4" aria-hidden="true" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg></button>
+
+<!-- Dropdown menu -->
+<div id="dropdownDivider" class="hidden z-10 w-44 bg-white rounded divide-y divide-gray-100 shadow dark:bg-gray-700 dark:divide-gray-600" data-popper-reference-hidden="" data-popper-escaped="" data-popper-placement="bottom" style="position: absolute; inset: 0px auto auto 0px; margin: 0px; transform: translate3d(0px, 540.8px, 0px);">
+    <ul class="py-1 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="dropdownDividerButton">
+      <li>
+        <a href="{% url 'hrms:employee-all' %}" class="block py-2 px-4  hover:bg-blue-500 hover:text-white">All Employess</a>
+      </li>
+      <li>
+        <a href="{% url 'hrms:attendance_new' %}" class="block py-2 px-4 hover:bg-blue-500 hover:text-white">Attendance</a>
+      </li>
+      <li>
+        <a href="{% url 'hrms:recruitmentall'%}" class="block py-2 px-4 hover:bg-blue-500 hover:text-white">Recruitments</a>
+      </li>
+     
+      <li>
+        <a href="{% url 'hrms:payroll' %}" class="block py-2 px-4 hover:bg-blue-500 hover:text-white">Payroll</a>
+      </li>
+      
+      
+    </ul>
+    
+</div>
+
+            
+              <div class="p-4 sm:w-1/3 w-1/3">
+                <p class="leading-relaxed">Departments</p>
+                <h2 class="title-font font-medium bg:text-4xl text-3xl text-white-500 bg-color-blue-500">{{dept_total}}</h2>
+              </div>
+            
+          </div>
+
+
+          
+            <div class="container px-5 py-24 mx-auto">
+              <div class="flex flex-col text-center w-full mb-20">
+                <h1 class="sm:text-4xl text-3xl font-medium title-font  text-gray-900">Recent Employees</h1>
+              </div>
+              <div class="lg:w-2/3 w-full mx-auto overflow-auto">
+                <table class="table-auto w-full text-left whitespace-no-wrap">
+                  <thead>
+                    <tr>
+                      <th class="px-4 py-3 title-font tracking-wider font-medium text-gray-900 text-sm bg-gray-100 rounded-tl rounded-bl">First name</th>
+                      <th class="px-4 py-3 title-font tracking-wider font-medium text-gray-900 text-sm bg-gray-100">Last name</th>
+                      <th class="px-4 py-3 title-font tracking-wider font-medium text-gray-900 text-sm bg-gray-100">Mobile</th>
+                      <th class="px-4 py-3 title-font tracking-wider font-medium text-gray-900 text-sm bg-gray-100">View</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {% for worker in workers %}
+                    <tr>
+                      <td class="px-4 py-3">{{worker.first_name}}</td>
+                      <td class="px-4 py-3">{{worker.last_name}}</td>
+                      <td class="px-4 py-3">{{worker.mobile}}</td>
+                      <td> <a class="inline-flex text-white bg-blue-500 hover:bg-blue-600 px-3 py-3 rounded-md" href="{% url 'hrms:employee_view' pk=worker.id %}">View</a></td>
+                    </tr>
+                    {% endfor %}
+                  </tbody>
+                </table>
+              </div>
+            </div>
+        </section>
+        {% block noty %}
+      <script>
+        {% if messages %}
+          {% for message in messages  %}
+            toastr.success('{{message}}')
+          {% endfor %}
+        {% endif %}
+      </script>
+      {% endblock noty %}
+  </div>
+
+  <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+<script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+<script src="https://unpkg.com/flowbite@1.5.3/dist/flowbite.js"></script>
+<link rel="stylesheet" href="https://unpkg.com/flowbite@1.5.3/dist/flowbite.min.css" />
+
+<script>
+  //menu toggle
+  let toggle = document.querySelector('.toggle');
+  let navigation = document.querySelector('.navigation');
+  let main =document.querySelector('.main');
+
+
+  toggle.onclick = function(){
+      navigation.classList.toggle('active');
+      main.classList.toggle('active');
+      
+  }
+</script>
+{% endblock content %}
+

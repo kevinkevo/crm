@@ -1,0 +1,242 @@
+{% extends "base.html" %}
+{% load tailwind_filters %}
+{% block content %}
+
+
+  <div class="container">
+    <div class="navigation">
+      <ul>
+        <li>
+          <a href="#" >
+            <span class="icon"><ion-icon name="logo-apple"></ion-icon></span>
+            <span class="title">Kevoh Organisation</span>
+  
+          </a>
+        </li>
+        <li>
+          <a href="{% url 'land-page' %}" >
+            <span class="icon"><ion-icon name="home-outline"></ion-icon></span>
+            <span class="title">Dashboard</span>
+  
+          </a>
+        </li>
+        
+        <li>
+          <a href="{% url 'leads:lead-list' %}" >
+            <span class="icon"><ion-icon name="people-outline"></ion-icon></ion-icon></span>
+            <span class="title">Leads</span>
+  
+          </a>
+        </li>
+        <li>
+          <a href="{% url 'agents:agent-list' %}" >
+            <span class="icon"><ion-icon name="people-outline"></ion-icon></ion-icon></span>
+            <span class="title">Agents</span>
+  
+          </a>
+        </li>
+        <li>
+          <a href="{%url 'leaves' %}" >
+            <span class="icon"><ion-icon name="git-pull-request-outline"></ion-icon></ion-icon></span>
+            <span class="title">Leaves requests</span>
+  
+          </a>
+        </li>
+        <li>
+          <a href="{% url 'hrms:dashboard' %}" >
+            <span class="icon"><ion-icon name="person-outline"></ion-icon></ion-icon></span>
+            <span class="title">Human Resource</span>
+  
+          </a>
+        </li>
+        <li>
+          <a href="{% url 'announcements:announcementall' %}" >
+            <span class="icon"><ion-icon name="chatbox-ellipses-outline"></ion-icon></ion-icon></span>
+            <span class="title">Announcements</span>
+  
+          </a>
+        </li>
+        <li>
+          <a href="{% url 'hrms:recruitment' %}" >
+            <span class="icon"><ion-icon name="bag-add-outline"></ion-icon></ion-icon></ion-icon></span>
+            <span class="title">Recruitment</span>
+  
+          </a>
+        </li>
+        <li>
+          <a href="{%url 'logout' %}" >
+            <span class="icon"><ion-icon name="exit-outline"></ion-icon></ion-icon></span>
+            <span class="title">Log out</span>
+  
+          </a>
+        </li>
+      </ul>
+    </div>
+  
+  </div>
+  
+  <!--main-->
+  <div class="main">
+    <div class="topbar">
+      <div class="toggle">
+        <ion-icon name="menu-outline"></ion-icon>
+      </div>
+      <div class="search">
+        <label>
+          <input type="text" placeholder="search here">
+          <ion-icon name="search-outline"></ion-icon> 
+        </label>
+      </div>
+      <div class="user">
+        <h3>Logged in as:{{request.user.username}}</h3>
+      </div>
+    </div>
+    <section class="text-gray-600 body-font">
+      <div class="container px-5 py-24 mx-auto">
+        <div class="flex flex-col text-center w-full mb-10">
+          <h1 class="sm:text-4xl text-3xl font-medium title-font mb-2 text-black-500">Personal Info.</h1>
+          <p class="lg:w-3/3 text-3xl font-medium title-font  text-black-500">Employee name: {{employee.first_name}} - {{employee.last_name}}</p>
+        </div>
+        <p class="lead  mb-2 text-black text-3xl text-center"> 
+          {{employee.emp_id | capfirst}} <br>
+          <small class='text-center text-secondary'>( ID )</small>
+           </p>
+        <div class="lg:w-3/3 w-1/2 mx-auto  overflow-auto">
+          <table class="table-auto w-full text-left whitespace-no-wrap">
+           
+  
+            <tbody>
+              <tr>
+              <th class="px-4 py-3 bg-gray-100 font-bg text-black-500">First name</th>
+                <td class="px-4 py-3 text-lg text-gray-900 bg-gray-100">{{employee.first_name}}</td>
+              </tr>
+              <tr>
+                <th class="px-4 py-3 font-bg text-black-500">last name</th>
+                <td class="px-4 py-3 text-lg text-gray-900">{{employee.last_name}}</td>
+              </tr>
+              <tr>
+                <th class="px-4 py-3 bg-gray-100 font-bg text-black-500">Mobile</th>
+                <td class="px-4 py-3 text-lg text-gray-900 bg-gray-100">{{employee.mobile}}</td>
+              </tr>
+              <tr>
+                <th class="px-4 py-3 font-bg text-black-500">Email</th>
+                <td class="px-4 py-3 text-lg text-gray-900">{{employee.email}}</td>
+              </tr>
+              <tr>
+                <th class="px-4 py-3 bg-gray-100  font-bg text-black-500 ">Gender</th>
+                <td class="px-4 py-3 text-lg text-gray-900 bg-gray-100">{{employee.gender}}</td>
+              </tr>
+              <tr>
+                <th class="px-4 py-3 font-bg text-black-500">Department</th>
+                <td class="px-4 py-3 text-lg text-gray-900">{{employee.department}}</td>
+              </tr>
+              <tr>
+                <th class="px-4 py-3 bg-gray-100 font-bg text-black-500">Language</th>
+                <td class="px-4 py-3 bg-gray-100 title-font tracking-wider text-lg text-gray-900">{{employee.language}}</td>
+              </tr>
+              <tr>
+                <th class="px-4 py-3 font-bg text-black-500">Salary</th>
+                <td class="px-4 py-3 text-lg text-gray-900">{{employee.salary}}</td>
+              </tr>
+              <tr>
+                <th class="px-4 py-3 font-bg bg-gray-100 text-black-500">Date</th>
+                <td class="px-4 py-3 bg-gray-100 title-font tracking-wider text-lg text-gray-900">{{employee.joined}}</td>
+              </tr>
+              <tr>
+                <th class="px-4 py-3 font-bg text-black-500">Account no</th>
+                <td class="px-4 py-3 text-lg text-gray-900">{{employee.nuban}}</td>
+              </tr>
+              <tr>
+                <th class="px-4 py-3 font-bg text-black-500 bg-gray-100">Bank:</th>
+                <td class="px-4 py-3 bg-gray-100 title-font tracking-wider text-lg text-gray-900">{{employee.bank}}</td>
+              </tr>
+                
+            </tbody>
+          </table>
+          
+        </div>
+        
+        
+      </div>
+      <div class="text-center mt-3">
+              
+          <a href = "{% url 'hrms:employee_update' pk=employee.id %}" class= "w-full text-white bg-blue-500 hover:bg-blue-600 px-3 py-3 rounded-md hover:text-black-500">Update</a>
+  
+      </div>
+  
+      <div class="container px-5 py-24 mx-auto">
+          <div class="flex flex-col text-center w-full mb-5">
+            <h1 class="sm:text-4xl text-3xl font-medium title-font mb-2 text-gray-900">Next of kin info.</h1>
+            <p class="lg:w-3/3 mx-auto text-3xl text-black">Information of next of kin of: {{employee.first_name}} - {{employee.last_name}} </p>
+          </div>
+          
+          <div class="lg:w-2/3 w-full mx-auto overflow-auto">
+            <table class="table-auto w-full text-left whitespace-no-wrap">
+             
+    
+              <tbody>
+                  {% if kin %}
+                <tr>
+                <th class="px-4 py-3 font-bg text-black-500 bg-gray-100">First name</th>
+                  <td class="px-4 py-3 bg-gray-100 title-font tracking-wider text-lg text-gray-900">{{kin.first_name}}</td>
+                </tr>
+                <tr>
+                  <th class="px-4 py-3 font-bg text-black-500">last name</th>
+                  <td class="px-4 py-3 text-lg text-gray-900">{{kin.last_name}}</td>
+                </tr>
+                <tr>
+                  <th class="px-4 py-3 font-bg text-black-500 bg-gray-100">Mobile</th>
+                  <td class="px-4 py-3 bg-gray-100 title-font tracking-wider text-lg text-gray-900">{{kin.mobile}}</td>
+                </tr>
+                <tr>
+                  <th class="px-4 py-3 font-bg text-black-500">Occupation</th>
+                  <td class="px-4 py-3 text-lg text-gray-900">{{kin.occupation | capfirst}}</td>
+                </tr>
+                <tr>
+                  <th class="px-4 py-3 font-bg text-black-500 bg-gray-100">Relative</th>
+                  <td class="px-4 py-3 bg-gray-100 title-font tracking-wider text-lg text-gray-900">{{kin.employee.first_name}} - {{kin.employee.last_name}}</td>
+                </tr>
+                
+                  
+              </tbody>
+            </table>
+            <div class="text-center mt-3">
+                <a href="{% url 'hrms:kin_add' id=employee.id %}" class="btn btn-lg btn-warning text-white hover:bg-blue-600 bg-blue-500">Update</a>
+            </div>
+            
+            {% else %}
+                                              <p class="lead text-center"> 
+                                                  OOPs! <br> No Next of kin information Provided.
+                                              </p>
+  
+                                              <div class="text-center">
+                                                  <a href="{% url 'hrms:kin_add' id=employee.id %}" class='btn btn-danger btn-rounded'> <i class="mdi mdi-upload"></i> Upload Now </a>
+                                              </div>
+  
+                                          {% endif %}
+          </div>
+          
+        </div>
+    </section>
+  </div>
+
+  <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+<script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+
+<script>
+  //menu toggle
+  let toggle = document.querySelector('.toggle');
+  let navigation = document.querySelector('.navigation');
+  let main =document.querySelector('.main');
+
+
+  toggle.onclick = function(){
+      navigation.classList.toggle('active');
+      main.classList.toggle('active');
+      
+  }
+</script>
+{% endblock content %}
+
+
+   

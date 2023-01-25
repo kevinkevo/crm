@@ -1,0 +1,131 @@
+{% extends "base.html" %}
+
+{% block content %}
+{% load static %}
+
+
+<div class="container">
+	<div class="navigation">
+		<ul>
+			<li>
+				<a href="#" >
+					<span class="icon"><ion-icon name="logo-apple"></ion-icon></span>
+					<span class="title">Kevoh Organisation</span>
+
+				</a>
+			</li>
+			<li>
+				<a href="{% url 'land-page' %}" >
+					<span class="icon"><ion-icon name="home-outline"></ion-icon></span>
+					<span class="title">Dashboard</span>
+
+				</a>
+			</li>
+			
+			<li>
+				<a href="{% url 'leads:lead-list' %}" >
+					<span class="icon"><ion-icon name="people-outline"></ion-icon></ion-icon></span>
+					<span class="title">Leads</span>
+
+				</a>
+			</li>
+			<li>
+				<a href="{% url 'agents:agent-list' %}" >
+					<span class="icon"><ion-icon name="people-outline"></ion-icon></ion-icon></span>
+					<span class="title">Agents</span>
+
+				</a>
+			</li>
+			<li>
+				<a href="{%url 'leaves' %}" >
+					<span class="icon"><ion-icon name="git-pull-request-outline"></ion-icon></ion-icon></span>
+					<span class="title">Leaves requests</span>
+
+				</a>
+			</li>
+			<li>
+				<a href="{% url 'hrms:employee-all' %}" >
+					<span class="icon"><ion-icon name="person-outline"></ion-icon></ion-icon></span>
+					<span class="title">Human Resource</span>
+
+				</a>
+			</li>
+			<li>
+				<a href="{% url 'announcements:announcementall' %}" >
+					<span class="icon"><ion-icon name="chatbox-ellipses-outline"></ion-icon></ion-icon></span>
+					<span class="title">Announcements</span>
+
+				</a>
+			</li>
+			<li>
+				<a href="{% url 'hrms:recruitment' %}" >
+					<span class="icon"><ion-icon name="bag-add-outline"></ion-icon></ion-icon></ion-icon></span>
+					<span class="title">Recruitment</span>
+
+				</a>
+			</li>
+			<li>
+				<a href="{%url 'logout' %}" >
+					<span class="icon"><ion-icon name="exit-outline"></ion-icon></ion-icon></span>
+					<span class="title">Log out</span>
+
+				</a>
+			</li>
+		</ul>
+	</div>
+
+</div>
+
+<!--main-->
+<div class="main">
+	<div class="topbar">
+		<div class="toggle">
+			<ion-icon name="menu-outline"></ion-icon>
+		</div>
+		<div class="search">
+			<label>
+				<input type="text" placeholder="search here">
+				<ion-icon name="search-outline"></ion-icon> 
+			</label>
+		</div>
+		<div class="user">
+			<h3>Logged in as:{{request.user.username}}</h3>
+		</div>
+	</div>
+	<section class="text-gray-600 body-font">
+        <div class="mt-10 text-black text-3xl">
+          <marquee>Life is like riding a bicyle to keep balance you need to keep on moving</marquee>
+        </div>
+        <div class="container mx-auto flex px-5 py-24 items-center justify-center flex-col">
+          
+          <img src="{% static 'images/mask.png' %}"width="500" 
+          height="600">
+          <div class="text-center lg:w-2/3 w-full">
+            <h1 class="title-font sm:text-4xl text-3xl mb-4 font-medium text-gray-900">Kevoh orgaisation kenya limited</h1>
+            <p class="mb-8 leading-relaxed"> Welcome.</p>
+            
+          </div>
+        </div>
+      </section>
+</div>
+
+<script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+<script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+
+<script>
+//menu toggle
+let toggle = document.querySelector('.toggle');
+let navigation = document.querySelector('.navigation');
+let main =document.querySelector('.main');
+
+
+toggle.onclick = function(){
+	navigation.classList.toggle('active');
+	main.classList.toggle('active');
+	
+}
+</script>
+{% endblock content %}
+
+
+

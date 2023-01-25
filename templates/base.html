@@ -1,0 +1,76 @@
+{% load static  %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Kevohcrm</title>
+	
+	<link href ="{% static 'css/style.css' %}" rel="stylesheet"/>
+	<script src="https://cdn.tailwindcss.com"></script>
+	<script src="https://cdn.tailwindcss.com?plugins=forms,typography,aspect-ratio,line-clamp"></script>
+	<link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet"/>
+	<link href="{% static 'js/jquery-ui-1.13.2/jquery-ui.min.css' %}" rel="stylesheet">
+	<link href="{% static 'js/jquery-ui-1.13.2/jquery-ui.structure.min.css' %}" rel="stylesheet">
+	<link href="{% static 'js/jquery-ui-1.13.2/jquery-ui.theme.min.css' %}" rel="stylesheet">
+	<link rel="stylesheet" href="{% static 'style.css' %}"
+	<link rel="stylesheet" type="text/css" href="{ {% static 'style.css' %} ">
+	<link rel="stylesheet" href="{% static 'script.js' %}"
+	<link rel="stylesheet" type="text/css" href="{ {% static 'script.js' %} ">
+	<link rel="stylesheet" href="{% static 'menu.css' %}"
+	<link rel="stylesheet" type="text/css" href="{ {% static 'menu.css' %} ">
+
+</head>
+<body>
+	<div class="max-w-auto mx-auto" >
+		
+		
+		{% block content %}
+		{% endblock content %}
+	</div>	
+	
+</body>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=YOUR_KEY_HERE"></script>
+<script src="{% static 'js/jquery-3.6.1.min.js' %}"></script>
+<script src="{% static 'js/jquery-ui-1.13.2/jquery-ui.min.js' %}"></script>
+<script src="{% static 'js/datepicker.js' %}"></script>
+<script src= " {% static 'js/script.js' %} "></script>
+<script src="{% static 'script.js' %}"></script>
+
+
+<script type="text/javascript">
+
+
+
+function previewImage(input) {
+	if (input.files && input.files[0]) {
+		var reader = new FileReader();
+		reader.onload = function (e) {
+			$('.prev-holder .prev-avatar').attr('src', e.target.result);
+		}
+		reader.readAsDataURL(input.files[0]);
+	}
+}
+
+
+$(document).ready(function(){
+
+	$('.refresh-page').click(function(){
+		/*Script refreshes the page*/
+		console.log('refresh page clicked !!!');
+		location.reload(true);
+
+	});
+
+
+	$( "#id_birthday,#id_dateissued,#id_startdate,#id_enddate" ).datepicker({
+		dateFormat: 'yy-mm-dd'
+	});
+
+
+});
+
+</script>
+</html>

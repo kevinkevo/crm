@@ -1,0 +1,150 @@
+{% extends "base.html" %}
+{% load tailwind_filters %}
+  {% load static %}
+        {% block content %}
+        
+        <div class="container">
+          <div class="navigation">
+            <ul>
+              <li>
+                <a href="#" >
+                  <span class="icon"><ion-icon name="logo-apple"></ion-icon></span>
+                  <span class="title">Kevoh Organisation</span>
+        
+                </a>
+              </li>
+              <li>
+                <a href="{% url 'land-page' %}" >
+                  <span class="icon"><ion-icon name="home-outline"></ion-icon></span>
+                  <span class="title">Dashboard</span>
+        
+                </a>
+              </li>
+              
+              <li>
+                <a href="{% url 'leads:lead-list' %}" >
+                  <span class="icon"><ion-icon name="people-outline"></ion-icon></ion-icon></span>
+                  <span class="title">Leads</span>
+        
+                </a>
+              </li>
+              <li>
+                <a href="{% url 'agents:agent-list' %}" >
+                  <span class="icon"><ion-icon name="people-outline"></ion-icon></ion-icon></span>
+                  <span class="title">Agents</span>
+        
+                </a>
+              </li>
+              <li>
+                <a href="{%url 'leaves' %}" >
+                  <span class="icon"><ion-icon name="git-pull-request-outline"></ion-icon></ion-icon></span>
+                  <span class="title">Leaves requests</span>
+        
+                </a>
+              </li>
+              <li>
+                <a href="{% url 'hrms:dashboard' %}" >
+                  <span class="icon"><ion-icon name="person-outline"></ion-icon></ion-icon></span>
+                  <span class="title">Human Resource</span>
+        
+                </a>
+              </li>
+              <li>
+                <a href="{% url 'announcements:announcementall' %}" >
+                  <span class="icon"><ion-icon name="chatbox-ellipses-outline"></ion-icon></ion-icon></span>
+                  <span class="title">Announcements</span>
+        
+                </a>
+              </li>
+              <li>
+                <a href="{% url 'hrms:recruitment' %}" >
+                  <span class="icon"><ion-icon name="bag-add-outline"></ion-icon></ion-icon></ion-icon></span>
+                  <span class="title">Recruitment</span>
+        
+                </a>
+              </li>
+              <li>
+                <a href="{%url 'logout' %}" >
+                  <span class="icon"><ion-icon name="exit-outline"></ion-icon></ion-icon></span>
+                  <span class="title">Log out</span>
+        
+                </a>
+              </li>
+            </ul>
+          </div>
+        
+        </div>
+        
+        <!--main-->
+        <div class="main">
+          <div class="topbar">
+            <div class="toggle">
+              <ion-icon name="menu-outline"></ion-icon>
+            </div>
+            <div class="search">
+              <label>
+                <input type="text" placeholder="search here">
+                <ion-icon name="search-outline"></ion-icon> 
+              </label>
+            </div>
+            <div class="user">
+              <h3>Logged in as:{{request.user.username}}</h3>
+            </div>
+          </div>
+          <section class="text-gray-600 body-font">
+            <div class="container px-5 py-24 mx-auto">
+              <div class="flex flex-col text-center w-full mb-20">
+                <h1 class="sm:text-4xl text-3xl font-medium title-font mb-2 text-gray-900">Staffers Payroll System</h1>
+              </div>
+              <div class="lg:w-2/3 w-full mx-auto overflow-auto">
+                <table class="table-auto w-full text-left whitespace-no-wrap">
+                  <thead>
+                    <tr>
+                      <th class="px-4 py-3 title-font tracking-wider font-medium text-gray-900 text-sm bg-gray-100 rounded-tl rounded-bl">First name</th>
+                      <th class="px-4 py-3 title-font tracking-wider font-medium text-gray-900 text-sm bg-gray-100">Last name</th>
+                      <th class="px-4 py-3 title-font tracking-wider font-medium text-gray-900 text-sm bg-gray-100">Account number</th>
+                      <th class="px-4 py-3 title-font tracking-wider font-medium text-gray-900 text-sm bg-gray-100">Bank name</th>
+                      <th class="px-4 py-3 title-font tracking-wider font-medium text-gray-900 text-sm bg-gray-100">Salary</th>
+                      <th class="px-4 py-3 title-font tracking-wider font-medium text-gray-900 text-sm bg-gray-100">Action</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {% for emp in emps %}
+                    <tr>
+                      <td class="px-4 py-3">{{emp.first_name}}</td>
+                      <td class="px-4 py-3">{{emp.last_name}}</td>
+                      <td class="px-4 py-3">{{emp.nuban}}</td>
+                      <td class="px-4 py-3">{{emp.bank}}</td>
+                      <td class="px-4 py-3">{{emp.salary}}</td>
+                      <td><button type='button' onclick="payWithPaystack('{{emp.salary}}','{{emp.nuban}}','{{emp.bank}}')" class=" inline-flex text-white bg-indigo-500 hover:bg-indigo-600 px-3 py-3 rounded-md">Pay</button> </td>
+                    </tr>
+                    {% endfor %}
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </section> 
+        
+  </div>
+
+  <script src="https://js.paystack.co/v1/inline.js"></script>
+
+  <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+<script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+<script src="https://unpkg.com/flowbite@1.5.3/dist/flowbite.js"></script>
+<link rel="stylesheet" href="https://unpkg.com/flowbite@1.5.3/dist/flowbite.min.css" />
+
+<script>
+  //menu toggle
+  let toggle = document.querySelector('.toggle');
+  let navigation = document.querySelector('.navigation');
+  let main =document.querySelector('.main');
+
+
+  toggle.onclick = function(){
+      navigation.classList.toggle('active');
+      main.classList.toggle('active');
+      
+  }
+</script>
+{% endblock content %}
